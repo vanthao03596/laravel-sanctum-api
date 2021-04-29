@@ -26,7 +26,8 @@ return [
 	|-------------------------------------------------------------------------------------------------------------------
 	*/
 	'map'               => [
-//         YOUR_API_CODE => '<MESSAGE_LOCALISATION_KEY>',
+         100 => 'api_response.login_success',
+         101 => 'api_response.logout_success',
 	],
 
 	/*
