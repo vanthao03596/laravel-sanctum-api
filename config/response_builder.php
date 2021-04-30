@@ -11,6 +11,8 @@
  * @link      https://github.com/MarcinOrlowski/laravel-api-response-builder
  */
 
+use App\Support\ApiCodes;
+
 return [
 	/*
 	|-------------------------------------------------------------------------------------------------------------------
@@ -26,8 +28,8 @@ return [
 	|-------------------------------------------------------------------------------------------------------------------
 	*/
 	'map'               => [
-         100 => 'api_response.login_success',
-         101 => 'api_response.logout_success',
+         ApiCodes::LOGIN_SUCCESS => 'api_response.login_success',
+         ApiCodes::LOGOUT_SUCCESS => 'api_response.logout_success',
 	],
 
 	/*

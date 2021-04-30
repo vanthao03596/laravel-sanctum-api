@@ -3,7 +3,6 @@
 namespace App\Http\Requests\API;
 
 use Illuminate\Foundation\Http\FormRequest;
-use JetBrains\PhpStorm\ArrayShape;
 
 /**
  * @property string $email
@@ -11,7 +10,6 @@ use JetBrains\PhpStorm\ArrayShape;
  */
 class UserLoginRequest extends FormRequest
 {
-    #[ArrayShape(['email' => "string", 'password' => "string"])]
     public function rules(): array
     {
         return [
