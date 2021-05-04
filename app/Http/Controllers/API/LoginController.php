@@ -6,18 +6,16 @@ use App\Http\Requests\API\UserLoginRequest;
 use App\Models\User;
 use App\Services\TokenManager;
 use App\Support\ApiCodes;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Hashing\HashManager;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
 use function abort;
 
-final class AuthController
+final class LoginController
 {
     public function __construct
     (
-        private HashManager $hash,
-        private ?Authenticatable $currentUser,
         private TokenManager $tokenManager,
     )
     {
@@ -28,7 +26,7 @@ final class AuthController
         /** @var User|null $user */
         $user = User::firstWhere('email', $request->email);
 
-        if (!$user || !$this->hash->check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             abort(Response::HTTP_UNAUTHORIZED);
         }
 
@@ -41,7 +39,7 @@ final class AuthController
 
     public function destroy(): \Symfony\Component\HttpFoundation\Response
     {
-        $this->tokenManager->destroyTokens($this->currentUser);
+        $this->tokenManager->destroyTokens(Auth::user());
 
         return ResponseBuilder::asSuccess(ApiCodes::LOGOUT_SUCCESS)
             ->build();
