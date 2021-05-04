@@ -20,7 +20,7 @@ class UserRegisterRequest extends FormRequest
                     ->mixedCase()
                     ->numbers()
                     ->symbols()
-                    ->uncompromised()
+                    ->uncompromised(),
             ],
             'terms' => ['required', 'accepted'],
         ];

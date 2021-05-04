@@ -5,7 +5,6 @@ namespace Tests\Feature\Http\Controllers\Auth;
 use App\Http\Controllers\API\RegisterController;
 use App\Support\ApiCodes;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use MarcinOrlowski\ResponseBuilder\Tests\Traits\TestingHelpers;
 use Tests\TestCase;
 
@@ -33,7 +32,6 @@ class RegisterControllerTest extends TestCase
         $this->assertResponseStatusCode(ApiCodes::REGISTER_SUCCESS, $jsonResponse);
 
         $this->assertDatabaseHas('users', ['email' => 'test@example.com']);
-
     }
 
     public function getApiCodesClassName(): string

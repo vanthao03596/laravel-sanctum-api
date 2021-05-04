@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\PersonalAccessToken;
 use App\Models\User;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Laravel\Sanctum\NewAccessToken;
 
 class TokenManager

@@ -27,7 +27,7 @@ class LoginControllerTest extends TestCase
     {
         $response = $this
             ->postJson(action([LoginController::class, 'store']), [
-                'email'    => $this->user->email,
+                'email' => $this->user->email,
                 'password' => 'password',
             ]);
 
@@ -38,7 +38,6 @@ class LoginControllerTest extends TestCase
         $this->assertTrue($jsonResponse->success);
 
         $this->assertResponseStatusCode(ApiCodes::LOGIN_SUCCESS, $jsonResponse);
-
     }
 
     public function test_users_can_not_authenticate_with_invalid_password()

@@ -3,8 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
 use MarcinOrlowski\ResponseBuilder\ExceptionHandlerHelper;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -39,6 +39,7 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
     public function render($request, Throwable $e)
     {
         return ExceptionHandlerHelper::render($request, $e);

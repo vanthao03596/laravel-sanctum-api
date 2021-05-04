@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use function abort;
 use App\Http\Requests\API\UserLoginRequest;
 use App\Models\User;
 use App\Services\TokenManager;
@@ -10,15 +11,12 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
-use function abort;
 
 final class LoginController
 {
-    public function __construct
-    (
+    public function __construct(
         private TokenManager $tokenManager,
-    )
-    {
+    ) {
     }
 
     public function store(UserLoginRequest $request): \Symfony\Component\HttpFoundation\Response
@@ -26,7 +24,7 @@ final class LoginController
         /** @var User|null $user */
         $user = User::firstWhere('email', $request->email);
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             abort(Response::HTTP_UNAUTHORIZED);
         }
 

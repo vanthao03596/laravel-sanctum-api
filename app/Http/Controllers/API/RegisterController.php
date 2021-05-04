@@ -10,13 +10,12 @@ use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
 
 class RegisterController
 {
-
     public function __invoke(UserRegisterRequest $request): \Symfony\Component\HttpFoundation\Response
     {
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
         ]);
 
         return ResponseBuilder::asSuccess(ApiCodes::REGISTER_SUCCESS)
