@@ -14,16 +14,14 @@ $finder = PhpCsFixer\Finder::create()
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
-$config = new PhpCsFixer\Config();
-
-return $config
+return (new PhpCsFixer\Config())
     ->setRules([
         '@PSR2' => true,
         'array_syntax' => ['syntax' => 'short'],
         'ordered_imports' => ['sort_algorithm' => 'alpha'],
         'no_unused_imports' => true,
         'not_operator_with_successor_space' => true,
-        'trailing_comma_in_multiline' => ['elements' => ['arrays']],
+        'trailing_comma_in_multiline' => true,
         'phpdoc_scalar' => true,
         'unary_operator_spaces' => true,
         'binary_operator_spaces' => true,
@@ -41,6 +39,7 @@ return $config
         'method_argument_space' => [
             'on_multiline' => 'ensure_fully_multiline',
             'keep_multiple_spaces_after_comma' => true,
-        ]
+        ],
+        'single_trait_insert_per_statement' => true,
     ])
     ->setFinder($finder);
