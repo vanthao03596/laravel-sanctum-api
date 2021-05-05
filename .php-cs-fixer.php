@@ -34,7 +34,7 @@ return $config
         'phpdoc_var_without_name' => true,
         'class_attributes_separation' => [
             'elements' => [
-                'method', 'property',
+                ['method' => 'one', 'property' => 'one']
             ],
         ],
         'method_argument_space' => [
