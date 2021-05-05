@@ -7,6 +7,7 @@ use App\Http\Requests\API\UserLoginRequest;
 use App\Models\User;
 use App\Services\TokenManager;
 use App\Support\ApiCodes;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,9 +36,9 @@ final class LoginController
             ->build();
     }
 
-    public function destroy(): \Symfony\Component\HttpFoundation\Response
+    public function destroy(Request $request): \Symfony\Component\HttpFoundation\Response
     {
-        $this->tokenManager->destroyTokens(Auth::user());
+        $this->tokenManager->destroyTokens($request->user());
 
         return ResponseBuilder::asSuccess(ApiCodes::LOGOUT_SUCCESS)
             ->build();
