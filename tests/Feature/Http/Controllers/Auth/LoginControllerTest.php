@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers\Auth;
 
 use App\Http\Controllers\API\LoginController;
+use App\Http\Requests\API\UserLoginRequest;
 use App\Models\User;
 use App\Support\ApiCodes;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -21,6 +22,15 @@ class LoginControllerTest extends TestCase
         parent::setUp();
 
         $this->user = User::factory()->create();
+    }
+
+    public function test_login_uses_form_request_validation()
+    {
+        $this->assertActionUsesFormRequest(
+            LoginController::class,
+            'store',
+            UserLoginRequest::class
+        );
     }
 
     public function test_a_user_can_login()

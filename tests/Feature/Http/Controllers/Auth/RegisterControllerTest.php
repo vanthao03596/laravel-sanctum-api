@@ -3,6 +3,7 @@
 namespace Tests\Feature\Http\Controllers\Auth;
 
 use App\Http\Controllers\API\RegisterController;
+use App\Http\Requests\API\UserRegisterRequest;
 use App\Support\ApiCodes;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use MarcinOrlowski\ResponseBuilder\Tests\Traits\TestingHelpers;
@@ -12,6 +13,15 @@ class RegisterControllerTest extends TestCase
 {
     use TestingHelpers;
     use RefreshDatabase;
+
+    public function test_register_uses_form_request_validation()
+    {
+        $this->assertActionUsesFormRequest(
+            RegisterController::class,
+            '__invoke',
+            UserRegisterRequest::class
+        );
+    }
 
     public function test_new_users_can_register()
     {
